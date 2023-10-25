@@ -1,0 +1,20 @@
+{%extends 'listings/base.html'%}
+
+
+
+{% block content %}
+<div>
+     
+    {% for merchant in merchants %}
+
+        <span>
+            <a href="{{merchant.id}}">{{merchant.name}}</a>
+        </span><br>
+     
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+

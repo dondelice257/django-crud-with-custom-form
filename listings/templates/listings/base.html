@@ -1,0 +1,17 @@
+{% load static %}
+<html>
+    <head>
+        <title>Merchants</title>
+        <link rel="stylesheet" href="{% static 'listings/styles.css' %}" />
+    </head>
+    <body
+    style="">
+    {% comment %} <h1>
+        <a href="{% url 'listings'%}">
+            Merchants</a>
+    </h1> {% endcomment %}
+
+        {% block content %}{% endblock %}
+
+    </body>
+</html>
