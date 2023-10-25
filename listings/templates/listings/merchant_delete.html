@@ -1,0 +1,13 @@
+{% extends 'listings/base.html'%}
+
+{% block content%}
+  Delete merchant
+<form action="" method="post" novalidate>
+
+    Are you sure you want to delete {{merchant.name}} from merchant list?
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+    
+    </form>
+
+{% endblock %}

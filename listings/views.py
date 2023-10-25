@@ -22,7 +22,6 @@ def merchandises(request):
 def merchandises_details(request, id):
     merchant=Merchant.objects.get(id=id)
     
-    template = loader.get_template()
     return render(request,
                   'listings/merchant-details.html',
                   {
@@ -82,11 +81,15 @@ def merchant_update(request, id):
           })
     
     
-def merchant_update(request, id):
+def merchant_delete(request, id):
         merchant=Merchant.objects.get(id=id)
+        
+        if request.method == 'POST':
+            merchant.delete()
+            return redirect('list')
     
         return render(request,
-                  'listings/merchant_update.html',
+                  'listings/merchant_delete.html',
                   {
         'merchant':merchant
     }
