@@ -53,32 +53,26 @@ def contact(request):
   
 def merchant_create(request):
     if request.method == 'POST':
-        
+        form = MerchantForm(request.POST)  
         if form.is_valid():
-            
-            merchant=form.save()
+            merchant = form.save()
             return redirect('details', merchant.id)
     else:
-        form=MerchantForm()
-    return render(request,
-              'listings/merchant_create.html',
-          {
-              'form': form,
-          })
+        form = MerchantForm() 
+    return render(request, 'listings/merchant_create.html', {'form': form})
+
         
 def merchant_update(request, id):
-    merchant=Merchant.objects.get(id=id)
+    merchant = Merchant.objects.get(id=id)
     if request.method == 'POST':
-        form=MerchantForm(request.POST, instance=merchant)
-        merchant=form.save()
-        return redirect('details', merchant.id)
+        form = MerchantForm(request.POST, instance=merchant)  # Initialize the form with the existing merchant instance
+        if form.is_valid():
+            merchant = form.save()
+            return redirect('details', merchant.id)
     else:
-        form=MerchantForm()
-    return render(request,
-              'listings/merchant_update.html',
-          {
-              'form': form,
-          })
+        form = MerchantForm(instance=merchant)  # Initialize the form with the existing merchant instance for GET requests
+    return render(request, 'listings/merchant_update.html', {'form': form})
+
     
     
 def merchant_delete(request, id):
